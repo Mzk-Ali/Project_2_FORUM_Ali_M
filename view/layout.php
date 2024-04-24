@@ -35,7 +35,7 @@
                             if(App\Session::getUser()){
                                 ?>
                                 <div class="nav_mesSujets">
-                                    <a href="index.php?ctrl=forum&action=index">MesSujets</a>
+                                    <a href="index.php?ctrl=forum&action=myFollowUp&id=<?= App\Session::getUser()->getId() ?>">MesSujets</a>
                                 </div>
                                 <div class="nav_profil">
                                     <img src="./public/img/avatar_batman.png" alt="">
@@ -68,6 +68,14 @@
                 </header>
                 
                 <main id="forum">
+                    <?php
+                    if(App\Session::isAdmin() || App\Session::isModerateur()){ ?>
+                        <a href="index.php?ctrl=forum&action=listUsers">
+                            <div class="listUsers">
+                                <img src="./public/img/listUsers.png" alt="">
+                            </div>
+                        </a>
+                    <?php } ?>
                     <?= $page ?>
                 </main>
             </div>

@@ -7,6 +7,7 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
+use Model\Managers\UserManager;
 
 class ForumController extends AbstractController implements ControllerInterface{
 
@@ -103,4 +104,43 @@ class ForumController extends AbstractController implements ControllerInterface{
     }
 
 
+    public function listUsers() {
+
+        $userManager    = new UserManager();
+        if(Session::getUser() && Session::getUser()->hasRole("admin"))
+        {
+            $users = $userManager->listUsersForAdmin();
+            // var_dump($users); die;
+        }
+        elseif(Session::getUser() && Session::getUser()->hasRole("moderateur"))
+        {
+            $users = $userManager->listUsersForModerateur();
+        }
+        
+        return [
+            "view" => VIEW_DIR."forum/listUsers.php",
+            "meta_description" => "Liste des utilisateurs : ",
+            "data" => [
+                "users" => $users,
+            ]
+        ];
+    }
+
+
+    public function myFollowUp($id){
+        $postManager    = new PostManager();
+        $topicManager   = new TopicManager();
+        $posts  = $postManager->findPostsByUser($id);
+        $topics = $topicManager->findTopicsByUser($id);
+
+
+        return [
+            "view" => VIEW_DIR."forum/myFollowUp.php",
+            "meta_description" => "Mes suivis : ",
+            "data" => [
+                "topics" => $topics,
+                "posts" => $posts
+            ]
+        ];
+    }
 }

@@ -15,6 +15,7 @@ final class User extends Entity{
     private $password;
     private $dateInscription;
     private $role;
+    private $avatar;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -107,6 +108,29 @@ final class User extends Entity{
         $this->role = $role;
 
         return $this;
+    }
+
+    // Get the value of avatar
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    // Set the value of id
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function hasrole($role)
+    {
+        if($role == $this->getRole())
+        {
+            return true;
+        }
+        return false;
     }
 
     

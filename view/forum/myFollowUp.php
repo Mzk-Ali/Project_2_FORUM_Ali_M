@@ -1,11 +1,51 @@
 <?php
-    $topic = $result["data"]['topic']; 
+    $topics = $result["data"]['topics']; 
     $posts = $result["data"]['posts']; 
 ?>
 
-<h1>Liste des posts : <?=$topic?></h1>
+<h1>Mes Suivis</h1>
+
+<h2>Mes topics</h2>
+
+<div class="container_infoPage_and_topic">
+    <div class="infoPage">
+
+    </div>
+    <div class="topic">
+        <ul>
+            <?php
+            foreach($topics as $topic ){ ?>
+                <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">
+                    <li>
+                        <div class="statut_topic">
+                            <span>STATUT</span>
+                        </div>
+                        <div class="sujet_topic">
+                            <span><?= $topic ?></span>
+                            <p>Debut du message le plus like</p>
+                        </div>
+                        <div class="infos_topic">
+                            <span>Sujet crée par :</span>
+                            <p><?= $topic->getUser() ?></p>
+                            <span>Le :</span>
+                            <p><?= $topic->getCreationDate() ?></p>
+                        </div>
+                        <div class="infos_suppl">
+                            <span>Dernier Message par : </span>
+                            <p></p>
+                            <span>Le :</span>
+                            <p></p>
+                            <p>Nbr de message</p>
+                        </div>
+                    </li>
+                </a>
+            <?php } ?>
+        </ul>
+    </div>
+</div>
 
 
+<h2>Topics où j'ai posté</h2>
 
 <div class="container_postsTopic">
 <?php
@@ -45,25 +85,4 @@
         </div>
     <?php } ?>
 </div>
-
-<?php
-if(App\Session::getUser())
-{ ?>
-<form action="index.php?ctrl=forum&action=addPostInTopic&id=<?= $topic->getId() ?>" method="post">
-    <div class="container_answer">
-        <div class="info_answer">
-            <p>Rejoignez le sujet en répondant au message</p>
-            <p>Veillez à respecter les règles de bonnes conduites</p>
-        </div>
-        <div class="main_answer">
-            <div class="myprofil"><img src="" alt=""></div>
-            <textarea name="message" id="message" cols="30" rows="10" placeholder="Répondre à ce sujet ..."></textarea>
-        </div>
-        <div class="button_answer">
-            <input class="button_add" type="submit" name="submit" value="Répondre">
-        </div>
-    </div>
-</form>
-<?php } ?>
-
 

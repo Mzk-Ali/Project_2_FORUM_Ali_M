@@ -42,4 +42,34 @@ class UserManager extends Manager{
             $this->className
         );
     }
+
+
+    // récupérer les utilisateurs pour l'admin
+    public function listUsersForAdmin() {
+
+        $sql = "SELECT * 
+                FROM ".$this->tableName." u 
+                WHERE u.role != 'admin'";
+        
+        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        return  $this->getMultipleResults(
+            DAO::select($sql), 
+            $this->className
+        );
+    }
+
+
+    // récupérer les utilisateurs pour le modérateur
+    public function listUsersForModerateur() {
+
+        $sql = "SELECT * 
+                FROM ".$this->tableName." u 
+                WHERE u.role = 'membre'";
+        
+        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        return  $this->getMultipleResults(
+            DAO::select($sql), 
+            $this->className
+        );
+    }
 }

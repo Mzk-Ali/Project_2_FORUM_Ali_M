@@ -20,6 +20,10 @@ main{
     padding: 8vh 0;
 }
 
+ul li{
+    list-style: none;
+}
+
 
 
 
@@ -144,6 +148,25 @@ nav{
     transform: translateY(-10px);
 }
 
+.listUsers{
+    position: fixed;
+    top: 10vh;
+    left: 1vw;
+    width: 50px;
+    border: solid 2px rgba(22,146,171,255);
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.listUsers:hover{
+    transform: translateY(-5px);
+}
+
+.listUsers img{
+    width: 100%;
+}
 
 /* --------------------------------------------------------------------------------------------- */
 
@@ -468,7 +491,73 @@ nav{
 
 /* --------------------------------------------------------------------------------------------- */
 
+/* ------------------------------------ listUsers ---------------------------------------------- */
+.container_listUsers{
+    width: 70vw;
+    margin: 10vh auto;
+    background-color: #CEE5FF;
+    border-radius: 30px;
+    
+    padding: 5%;
+}
 
+.container_listUsers li{
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    border-bottom: 1px solid #163e6d;
+    padding: 1%;
+    transition: 0.5s;
+}
+
+.user_li:hover{
+    background-color:rgba(22, 62, 109, 0.2);
+}
+
+.user_avatar{
+    width: 40px;
+}
+
+.user_avatar img{
+    width: 100%;
+}
+
+.user_mail{
+    width: 20%;
+}
+
+.user_pseudo{
+    width: 15%;
+}
+
+.user_dateInscription{
+    width: 20%;
+}
+
+.user_role{
+    width: 15%;
+}
+.user_role select{
+    border: none;
+    background-color: transparent;
+    padding: 2px;
+}
+
+.user_valider input{
+    background-color: transparent;
+    border: 1px solid #163e6d;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.user_valider input:hover{
+    transform: scale(1.1);
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
 
 
 
