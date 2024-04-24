@@ -34,7 +34,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    font-size: larger;
+    font-size: 100%;
     font-weight: bolder;
 }
 
@@ -44,15 +44,32 @@ nav{
     cursor: pointer;
 }
 
+.nav_search{
+    width: 70%;
+}
+
+.nav_search input{
+    padding: 5px 10px;
+    width: 100%;
+    height: 3vh;
+    border: none;
+    border-radius: 10px;
+}
 .nav_profil img:hover{
     transform: scale(1.1);
 }
 
-.nav_right, .nav_left{
+.nav_left{
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    gap: 30px;
+    width: 60vw;
+}
+.nav_right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+    width: 30vw;
 }
 
 .menu_profil{
@@ -62,8 +79,8 @@ nav{
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    gap: 10px;
-    background-color: gray;
+    gap: 30px;
+    background-color: rgba(207, 207, 207, 0.2);
     width: 20vw;
     height: 30vh;
     position: fixed;
@@ -71,44 +88,113 @@ nav{
     right: 0;
 }
 
-.menu_profil .login{
+.menu_profil .login a{
     background-color: green;
     padding: 10px 20px;
     border-radius: 20px;
+    
+}
+
+.menu_profil .logout a{
+    background-color: rgba(156, 2, 2, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.menu_profil .login, .menu_profil .signIn, .menu_profil .logout{
     transition: 0.5s;
 }
 
-.menu_profil .login:hover{
+.menu_profil .login:hover, .menu_profil .signIn:hover, .menu_profil .logout:hover{
     transform: scale(1.1);
 }
 
-.menu_profil .signIn{
+.menu_profil .signIn a{
     background-color: white;
     padding: 10px 20px;
     border-radius: 20px;
     transition: 0.5s;
-}
-
-.menu_profil .signIn:hover{
-    transform: scale(1.1);
 }
 
 .hidden{
     display: none;
 }
 
-.nav_home a, .nav_categorie a{
-    padding: 10px 15px;
+.nav_home{
+    width: 20%;
+}
+
+.nav_categorie, .nav_mesSujets{
+    width: 40%;
+}
+
+.nav_profil{
+    width: 20%;
+}
+
+.nav_home a, .nav_categorie a, .nav_mesSujets a{
+    padding: 5% 15%;
+    font-size: 100%;
     border-radius: 20px;
     transition: 0.5s;
 }
 
-.nav_home a:hover, .nav_categorie a:hover{
+.nav_home a:hover, .nav_categorie a:hover, .nav_mesSujets a:hover{
     background-color: white;
     transform: translateY(-10px);
 }
 
 
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------- REGISTER/ LOGIN --------------------------------------------- */
+.form_register, .form_login{
+    background-color: rgba(149, 194, 247, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    border-radius: 30px;
+    width: 60vw;
+    margin: 5vh auto;
+    padding: 10%;
+    font-weight: bolder;
+    color: #163e6d;
+}
+
+.form_register div, .form_login div{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form_register div input, .form_login div input{
+    height: 40px;
+    padding: 10px;
+    border: none;
+    box-shadow: 1px 1px 2px black;
+}
+
+.sign_in input, .login input{
+    border-radius: 20px;
+    margin: auto;
+    width: 60%;
+    border: none;
+    background-color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.sign_in input:hover, .login input:hover{
+    background-color: rgba(0, 60, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.redirection_login, .redirection_signIn{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
 /* --------------------------------------------------------------------------------------------- */
 
 

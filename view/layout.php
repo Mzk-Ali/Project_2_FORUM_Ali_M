@@ -23,13 +23,8 @@
                                 <a href="">HOME</a>
                             </div>
                             <div class="nav_search">
-                            <input type="text" name="search" id="search" placeholder=" Rechercher">
+                                <input type="text" name="search" id="search" placeholder=" Rechercher">
                             </div>
-                            <?php
-                            if(App\Session::isAdmin()){
-                                ?>
-                                <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-                            <?php } ?>
                         </div>
                         <div class="nav_right">
                             <div class="nav_categorie">
@@ -40,17 +35,16 @@
                             if(App\Session::getUser()){
                                 ?>
                                 <div class="nav_mesSujets">
-                                    <a href="index.php?ctrl=forum&action=index">Mes Sujets</a>
+                                    <a href="index.php?ctrl=forum&action=index">MesSujets</a>
                                 </div>
                                 <div class="nav_profil">
                                     <img src="./public/img/avatar_batman.png" alt="">
                                 </div>
-                                <div class="menu_profil">
+                                <div class="menu_profil hidden">
                                     <div class="logout">
                                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                     </div>
                                 </div>
-                                <!-- <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a> -->
                                 <?php
                             }
                             else{
@@ -71,35 +65,6 @@
                         ?>
                         </div>
                     </nav>
-
-                    <!-- <nav>
-                        <div id="nav-left">
-                            <a href="/">Accueil</a>
-                            <?php
-                            if(App\Session::isAdmin()){
-                                ?>
-                                <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-                            <?php } ?>
-                        </div>
-                        <div id="nav-right">
-                        <?php
-                            // si l'utilisateur est connecté 
-                            if(App\Session::getUser()){
-                                ?>
-                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <a href="index.php?ctrl=security&action=login">Connexion</a>
-                                <a href="index.php?ctrl=security&action=register">Inscription</a>
-                                <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
-                            <?php
-                            }
-                        ?>
-                        </div>
-                    </nav> -->
                 </header>
                 
                 <main id="forum">

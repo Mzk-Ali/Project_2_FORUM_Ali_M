@@ -6,24 +6,27 @@
 <h1>Liste des topics : <?=$category?></h1>
 
 
-
-<form class="form_addTopic" action="index.php?ctrl=forum&action=addTopicInCategory&id=<?= $category->getId() ?>" method="post">
-    <div class="container_addTopic">
-        <div class="addTopic">
-            <div class="titleTopic">
-                <label for="title">Titre du Topic : </label>
-                <input name="title" id="title" type="text" placeholder="Insérez le titre">
+<?php
+if(App\Session::getUser())
+{ ?>
+    <form class="form_addTopic" action="index.php?ctrl=forum&action=addTopicInCategory&id=<?= $category->getId() ?>" method="post">
+        <div class="container_addTopic">
+            <div class="addTopic">
+                <div class="titleTopic">
+                    <label for="title">Titre du Topic : </label>
+                    <input name="title" id="title" type="text" placeholder="Insérez le titre">
+                </div>
+                <div class="firstMessage">
+                    <label for="message">Premier Message : </label>
+                    <textarea name="message" id="message" placeholder="Insérez le 1er message"></textarea>
+                </div>
             </div>
-            <div class="firstMessage">
-                <label for="message">Premier Message : </label>
-                <textarea name="message" id="message" placeholder="Insérez le 1er message"></textarea>
+            <div class="forumulaire_add_button">
+                <input class="button_add" type="submit" name="submit" value="Ajouter">
             </div>
         </div>
-        <div class="forumulaire_add_button">
-            <input class="button_add" type="submit" name="submit" value="Ajouter">
-        </div>
-    </div>
-</form>
+    </form>
+<?php } ?>
 
 <div class="container_infoPage_and_topic">
     <div class="infoPage">

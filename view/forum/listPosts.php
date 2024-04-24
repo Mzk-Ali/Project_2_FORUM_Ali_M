@@ -45,6 +45,9 @@
     <?php } ?>
 </div>
 
+<?php
+if(App\Session::getUser())
+{ ?>
 <form action="index.php?ctrl=forum&action=addPostInTopic&id=<?= $topic->getId() ?>" method="post">
     <div class="container_answer">
         <div class="info_answer">
@@ -60,5 +63,6 @@
         </div>
     </div>
 </form>
+<?php } ?>
 
 

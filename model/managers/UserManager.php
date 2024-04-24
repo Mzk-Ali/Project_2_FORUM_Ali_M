@@ -22,9 +22,9 @@ class UserManager extends Manager{
                 FROM ".$this->tableName." u 
                 WHERE u.mail = :mail";
         
-        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        // la requête renvoie 1 enregistrement ou NUll  --> getOneOrNullResult
         return  $this->getOneOrNullResult(
-            DAO::select($sql, ['mail' => $mail]), 
+            DAO::select($sql, ['mail' => $mail], false), 
             $this->className
         );
     }
@@ -36,9 +36,9 @@ class UserManager extends Manager{
                 FROM ".$this->tableName." u 
                 WHERE u.pseudo = :pseudo";
         
-        // la requête renvoie plusieurs enregistrements --> getMultipleResults
+        // la requête renvoie 1 enregistrement ou NUll  --> getOneOrNullResult
         return  $this->getOneOrNullResult(
-            DAO::select($sql, ['pseudo' => $pseudo]), 
+            DAO::select($sql, ['pseudo' => $pseudo], false), 
             $this->className
         );
     }

@@ -1,7 +1,3 @@
-<?php
-    $category = $result["data"]['category']; 
-    $topics = $result["data"]['topics']; 
-?>
 
 <h1>Inscription au FORUM</h1>
 
@@ -10,7 +6,7 @@
 <form class="form_register" action="index.php?ctrl=security&action=register" method="post">
     <div class="register_mail">
         <label for="mail">Email</label>
-        <input type="url" name="mail" id="mail">
+        <input type="email" name="mail" id="mail">
     </div>
     <div class="register_pseudo">
         <label for="pseudo">Pseudo</label>
@@ -28,6 +24,6 @@
         <input class="button_signIn" type="submit" name="submit" value="S'INSCRIRE">
     </div>
     <div class="redirection_login">
-        <a href="#">As-tu déjà un compte ?</a>
+        <a href="index.php?ctrl=security&action=login">As-tu déjà un compte ?</a>
     </div>
 </form>

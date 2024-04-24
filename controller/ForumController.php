@@ -68,13 +68,13 @@ class ForumController extends AbstractController implements ControllerInterface{
 
         if(isset($_POST['submit']) && $_POST["message"] != "") {
             $data["message"]        = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data["creationDate"]   = date_create('now')->format('Y-m-d H:i:s');
+            // $data["creationDate"]   = date_create('now')->format('Y-m-d H:i:s');
             $data["user_id"]        = 3;
             $data["topic_id"]       = $id;
 
             $postManager->add($data);
         }
-        header("Location:index.php?ctrl=forum&action=listPostsByTopic&id=$id");
+        $this->redirectTo("forum","listPostsByTopic",$id);
     }
 
     // Ajout d'un topic dans la catégorie sélectionné
@@ -85,21 +85,21 @@ class ForumController extends AbstractController implements ControllerInterface{
         if(isset($_POST['submit']) && $_POST["title"] != "")
         {
             $dataTopic["title"]          = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $dataTopic["creationDate"]   = date_create('now')->format('Y-m-d H:i:s');
+            // $dataTopic["creationDate"]   = date_create('now')->format('Y-m-d H:i:s');
             $dataTopic["category_id"]    = $id;
             $dataTopic["user_id"]        = 3;
 
             $id_topic = $topicManager->add($dataTopic);
 
             $data_firstMsg["message"]       = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $data_firstMsg["creationDate"]  = date_create('now')->format('Y-m-d H:i:s');
+            // $data_firstMsg["creationDate"]  = date_create('now')->format('Y-m-d H:i:s');
             $data_firstMsg["user_id"]       = 3;
             $data_firstMsg["topic_id"]      = $id_topic;
 
             $postManager->add($data_firstMsg);
 
         }
-        header("Location:index.php?ctrl=forum&action=listPostsByTopic&id=$id_topic");
+        $this->redirectTo("forum","listPostsByTopic",$id_topic);
     }
 
 
