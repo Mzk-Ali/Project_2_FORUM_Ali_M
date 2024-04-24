@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: rgb(0, 122, 156);
+    text-align: center;
+    font-size: xx-large;
+}
+
+a, i{
+    text-decoration: none;
+    color: inherit;
+}
+
+main{
+    margin-top: 8vh;
+    padding: 8vh 0;
+}
+
+
+
+
+/* ------------------------------------ NAVBAR ------------------------------------------------- */
+nav{
+    position: fixed;
+    top: 0;
+    display: flex;
+    background-color: #CEE5FF;
+    width: 100%;
+    height: 8vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.nav_profil img{
+    width: 40px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.nav_profil img:hover{
+    transform: scale(1.1);
+}
+
+.nav_right, .nav_left{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+}
+
+.menu_profil{
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    gap: 10px;
+    background-color: gray;
+    width: 20vw;
+    height: 30vh;
+    position: fixed;
+    top: 8vh;
+    right: 0;
+}
+
+.menu_profil .login{
+    background-color: green;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.menu_profil .login:hover{
+    transform: scale(1.1);
+}
+
+.menu_profil .signIn{
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.menu_profil .signIn:hover{
+    transform: scale(1.1);
+}
+
+.hidden{
+    display: none;
+}
+
+.nav_home a, .nav_categorie a{
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.nav_home a:hover, .nav_categorie a:hover{
+    background-color: white;
+    transform: translateY(-10px);
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
+
+
+
+/* ------------------------------------ Categorie ---------------------------------------------- */
+.container_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20vh auto;
+    width: 80vw;
+    gap: 5%;
+    row-gap: 50px;
+}
+
+.container_card a{
+    width: 20%;
+}
+
+.card{
+    width: 100%;
+    height: 20vh;
+    border-radius: 10px;
+    border: solid 2px #95c2f7;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.img_category{
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.nom_category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CEE5FF;
+    height: 20%;
+}
+
+.img_category img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img{
+    transform: scale(1.05);
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* -------------------------------- Liste topic by ID ------------------------------------------ */
+.container_infoPage_and_topic{
+    margin: auto;
+    border: solid 4px black;
+    border-radius: 20px;
+    width: 80vw;
+    height: 600px;
+    overflow: hidden;
+}
+
+.form_addTopic{
+    width: 80vw;
+    margin: 30px auto;
+    border: solid 4px #CEE5FF;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.container_addTopic{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTopic{
+    width: 90%;
+}
+
+.titleTopic input{
+    background-color: rgba(196, 196, 196, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 88%;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.firstMessage{
+    display: flex;
+    flex-direction: column;
+}
+
+.firstMessage textarea{
+    background-color: rgba(196, 196, 196, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    font-style: italic;
+}
+
+.forumulaire_add_button{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.button_add{
+    border: none;
+    border-radius: 20px;
+    background-color: #CEE5FF;
+    padding: 10px 20px;
+    font-weight: bolder;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.button_add:hover{
+    transform: scale(1.1);
+}
+
+.infoPage{
+    height: 5%;
+    width: 90%;
+    margin: auto;
+}
+
+.topic ul a li{
+    display: flex;
+    /* align-items: center; */
+    transition: 0.5s;
+    /* height: 8vh; */
+    border-top: 1px solid black;
+    width: 95%;
+    margin: auto;
+    padding: 5px 0;
+}
+
+.topic ul a li:hover{
+    background-color: #CEE5FF;
+}
+
+.statut_topic{
+    width: 10%;
+    text-align: center;
+}
+.sujet_topic{
+    width: 50%;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.infos_topic{
+    border-right: 1px solid black;
+}
+
+.infos_topic p, .infos_suppl p{
+    text-align: center;
+}
+
+.infos_topic, .infos_suppl{
+    width: 20%;
+}
+
+.statut_topic, .sujet_topic, .infos_topic, .infos_suppl{
+    padding: 5px 10px;
+    height: 100%;
+}
+/* --------------------------------------------------------------------------------------------- */
+
+/* -------------------------------- Liste posts by ID ------------------------------------------ */
+.container_postsTopic, .container_answer{
+    width: 90vw;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.container_answer{
+    width: 80vw;
+    padding: 10px 40px;
+    background-color: #ACD3FF;
+}
+
+.container_info_user_and_post{
+    display: flex;
+    margin: auto;
+    width: 90%;
+    background-color: rgba(206, 229, 255, 0.3);
+    border: solid 1px black;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.infos_user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 15%;
+    padding: 20px;
+}
+
+.img_user{
+    width: 50px;
+}
+
+.name_user, .role_user{
+    text-align: center;
+}
+
+.role_user span{
+    background-color: rgb(7, 238, 7);
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.container_post{
+    width: 80%;
+}
+
+.header_post, .footer_post{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.main_post{
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    height: 70px;
+    padding: 5px 10px;
+}
+
+.button_answer{
+    display: flex;
+    justify-content: end;
+}
+
+.main_answer{
+    display: flex;
+}
+
+.myprofil{
+    width: 20%;
+}
+
+.main_answer textarea{
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------- FOOTER ----------------------------------------------- */
+footer {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    background-color: #CEE5FF;
+    text-align: center;
+  }
+
+
+
+/* --------------------------------------------------------------------------------------------- */
