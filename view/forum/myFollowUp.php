@@ -18,24 +18,28 @@
                 <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">
                     <li>
                         <div class="statut_topic">
-                            <span>STATUT</span>
+                            <b><span>STATUT</span></b>
+                            <div class="circle_statut_topic <?php if($topic->getLock() == 1){echo "statut_lock";} ?>"></div>
                         </div>
+                        <hr>
                         <div class="sujet_topic">
-                            <span><?= $topic ?></span>
-                            <p>Debut du message le plus like</p>
+                            <span><b>Titre du topic : </b><?= $topic ?></span><br><br>
+                            <p><?= $topic->getLastMsg() ?></p>
                         </div>
+                        <hr>
                         <div class="infos_topic">
-                            <span>Sujet crée par :</span>
+                            <span><b>Sujet crée par :</b></span>
                             <p><?= $topic->getUser() ?></p>
-                            <span>Le :</span>
+                            <span><b>Le :</b></span>
                             <p><?= $topic->getCreationDate() ?></p>
                         </div>
+                        <hr>
                         <div class="infos_suppl">
-                            <span>Dernier Message par : </span>
-                            <p></p>
-                            <span>Le :</span>
-                            <p></p>
-                            <p>Nbr de message</p>
+                            <span><b>Dernier Message par : </b></span>
+                            <p><?= $topic->getUserMsg() ?></p>
+                            <span><b>Le :</b></span>
+                            <p><?= $topic->getDateLastMsg() ?></p><br>
+                            <p><?= $topic->getNbPosts() ?> message(s)</p>
                         </div>
                     </li>
                 </a>
@@ -47,42 +51,45 @@
 
 <h2>Topics où j'ai posté</h2>
 
-<div class="container_postsTopic">
-<?php
-    foreach($posts as $post ){ ?>
-        
-        <div class="container_info_user_and_post">
-            <div class="infos_user">
-                <div class="img_user"><img src="<?= $post->getUser()->getAvatar() ?>" alt=""></div>
-                <div class="name_user"><span><?= $post->getUser() ?></span></div>
-                <div class="role_user"><span><?= $post->getUser()->getRole() ?></span></div>
-            </div>
-            <div class="container_post">
-                <div class="header_post">
-                    <div class="modif_post">
-                        <a href="#"><p>Modifier Post</p></a>
-                    </div>
-                    <div class="share_post">
-                        <a href="#"><p>Partager</p></a>
-                    </div>
-                </div>
-                <div class="main_post">
-                    <p><?= $post->getMessage() ?></p>
-                </div>
-                <div class="footer_post">
-                    <div class="date_post">
-                        <span>Posté le : </span>
-                        <span><?= $post->getCreationDate() ?></span>
-                    </div>
-                    <div class="like_post">
-                        <span>22 likes</span>
-                    </div>
-                    <div class="answer_post">
-                        <a href="#"><span>Répondre</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php } ?>
+
+<div class="container_infoPage_and_topic">
+    <div class="infoPage">
+
+    </div>
+    <div class="topic">
+        <ul>
+            <?php
+            foreach($posts as $post ){ 
+                // var_dump($post); die;
+                ?>
+                <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $post->getTopic()->getId() ?>">
+                    <li>
+                        <div class="statut_topic">
+                            <b><span>STATUT</span></b>
+                            <div class="circle_statut_topic <?php if($topic->getLock() == 1){echo "statut_lock";} ?>"></div>
+                        </div>
+                        <hr>
+                        <div class="sujet_topic">
+                            <span><b>Titre du topic : </b><?= $post->getTopic() ?></span><br><br>
+                            <p><?= $post->getMessage() ?></p>
+                        </div>
+                        <hr>
+                        <div class="infos_topic">
+                            <span>Sujet crée par :</span>
+                            <p><?= $post->getTopic()->getUser() ?></p>
+                            <span>Le :</span>
+                            <p><?= $post->getTopic()->getCreationDate() ?></p>
+                        </div>
+                        <hr>
+                        <div class="infos_suppl">
+                            <span><b>Date de mon dernier message :</b></span>
+                            <p><?= $post->getDateLastMsg() ?></p><br>
+                            <p> J'ai écrit <?= $post->getNbPosts() ?> message(s)</p>
+                        </div>
+                    </li>
+                </a>
+            <?php } ?>
+        </ul>
+    </div>
 </div>
 

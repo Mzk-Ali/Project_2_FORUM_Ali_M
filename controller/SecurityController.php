@@ -27,8 +27,9 @@ class SecurityController extends AbstractController{
                 if($user_mail)
                 {
                     // Message alert : mail existant
+                    $alert_statut = "error";
                     $alert_message = "L'email saisie existe déjà. Veuillez en choisir un autre !";
-                    echo $alert_message;
+                    Session::addFlash($alert_statut, $alert_message);
                     //header register
                     $this->redirectTo("security","register");
                 }
@@ -39,8 +40,9 @@ class SecurityController extends AbstractController{
                     if($user_pseudo)
                     {
                         // Message alert : pseudo existant
+                        $alert_statut = "error";
                         $alert_message = "Le pseudo saisie existe déjà. Veuillez en choisir un autre !";
-                        echo $alert_message;
+                        Session::addFlash($alert_statut, $alert_message);
                         // header register
                         $this->redirectTo("security","register");
                     }
@@ -58,16 +60,18 @@ class SecurityController extends AbstractController{
                             $userManager->add($data_user);
 
                             // Message alert : inscription validée
+                            $alert_statut = "success";
                             $alert_message = "Vous êtes inscrit ! Bienvenue !";
-                            echo $alert_message;
+                            Session::addFlash($alert_statut, $alert_message);
 
                             // header accueil
                             $this->redirectTo("forum","index");
                         }
                         else{
                             // Message alert : mot de passe pas identique ou mauvaise taille
+                            $alert_statut = "error";
                             $alert_message = "Les mots de passe saisies ne correspondent pas ou la taille du mot de passe n'est pas correcte !";
-                            echo $alert_message;
+                            Session::addFlash($alert_statut, $alert_message);
                             // header register
                             $this->redirectTo("security","register");
                         }
@@ -77,13 +81,15 @@ class SecurityController extends AbstractController{
             else
             {
                 // Message alert : saisie incorrecte
+                $alert_statut = "error";
                 $alert_message = "La saisie n'est pas correcte. Veuillez resaisir les champs !";
-                echo $alert_message;
+                Session::addFlash($alert_statut, $alert_message);
                 // header register
                 $this->redirectTo("security","register");
             }
         }
 
+        // Session::addFlash($alert_statut, $alert_message);
         // form register
         return [
             "view" => VIEW_DIR."security/register.php",
@@ -95,54 +101,69 @@ class SecurityController extends AbstractController{
 
     public function login () {
         $userManager    = new UserManager();
-        if(isset($_POST['submit']))
-        {
-            // Filtrage de la saisie des champs du formulaire
-            $mail       = filter_input(INPUT_POST, "mail", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
-            $password   = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        
-            // Verifier si la saisie est correcte
-            if($mail && $password)
+        if(!Session::getUser()){
+            $alert_statut = "";
+            $alert_message = "";
+            if(isset($_POST['submit']))
             {
-                $user = $userManager->listUserByMail($mail);
-                // Verifie si le mail existe
-                if($user)
+                // Filtrage de la saisie des champs du formulaire
+                $mail       = filter_input(INPUT_POST, "mail", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_VALIDATE_EMAIL);
+                $password   = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+                // Verifier si la saisie est correcte
+                if($mail && $password)
                 {
-                    $hash = $user->getPassword();
-                    // Verifie si le mot de passe est correcte
-                    if(password_verify($password, $hash))
+                    $user = $userManager->listUserByMail($mail);
+                    // Verifie si le mail existe
+                    if($user)
                     {
-                        // Message alert : connexion validée
-                        $alert_message = "Vous êtes connecté ! Bienvenue !";
-                        echo $alert_message;
+                        $hash = $user->getPassword();
+                        // Verifie si le mot de passe est correcte
+                        if(password_verify($password, $hash))
+                        {
+                            Session::setUser($user);
 
-                        Session::setUser($user);
-                        // header home
-                        $this->redirectTo("forum","index");
+                            // Message alert : connexion validée
+                            $alert_statut = "success";
+                            $alert_message = "Vous êtes connecté ! Bienvenue !";
+                            Session::addFlash($alert_statut, $alert_message);
+
+                            // header home
+                            $this->redirectTo("forum","index");
+                        }
+                        else
+                        {
+                            // Message alert : email ou mot de passe incorrect
+                            $alert_statut = "error";
+                            $alert_message = "L'email ou le mot de passe est incorrect !";
+
+                            // header login
+                        }
                     }
                     else
                     {
-                        // Message alert : email ou mot de passe incorrect
-                        $alert_message = "L'email ou le mot de passe est incorrect !";
-                        echo $alert_message;
-                        // header login
+                        // Message alert : email inexistant
+                        $alert_statut = "error";
+                        $alert_message = "L'email saisie n'existe pas !";
+                        //header login
                     }
                 }
                 else
                 {
-                    // Message alert : email inexistant
-                    $alert_message = "L'email saisie n'existe pas !";
-                    echo $alert_message;
-                    //header login
+                    // Message alert : saisie incorrecte
+                    $alert_statut = "error";
+                    $alert_message = "La saisie n'est pas correcte. Veuillez resaisir les champs !";
+                    // header login
                 }
             }
-            else
-            {
-                // Message alert : saisie incorrecte
-                $alert_message = "La saisie n'est pas correcte. Veuillez resaisir les champs !";
-                echo $alert_message;
-                // header login
-            }
+            Session::addFlash($alert_statut, $alert_message);
+        }
+        else{
+            // Message alert : acces impossible
+            $alert_statut = "warning";
+            $alert_message = "Le chemin n'est pas possible";
+            Session::addFlash($alert_statut, $alert_message);
+            $this->redirectTo("forum","index");
         }
 
         // form login
@@ -156,6 +177,9 @@ class SecurityController extends AbstractController{
 
     public function logout () {
         unset($_SESSION["user"]);
+        $alert_statut = "success";
+        $alert_message = "Vous êtes déconnecté. A bientôt !!!!";
+        Session::addFlash($alert_statut, $alert_message);
         // header home
         $this->redirectTo("forum","index");
     }

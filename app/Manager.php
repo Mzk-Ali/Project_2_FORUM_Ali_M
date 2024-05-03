@@ -66,6 +66,27 @@ abstract class Manager{
             die();
         }
     }
+
+
+    public function update($id, $data){
+        foreach ($data as $key => $value) {
+            $tab[] = " ".$this->tableName.".`".$key."` = '".$value."'";
+        }
+        $sql = "UPDATE ".$this->tableName."
+                SET ".implode(",", $tab)."
+                WHERE id_".$this->tableName." = :id
+                ";
+
+        // var_dump($sql); die;
+        try{
+            return DAO::update($sql, ['id' => $id]);
+        }
+        catch(\PDOException $e){
+            echo $e->getMessage();
+            die();
+        }
+    }
+
     
     public function delete($id){
         $sql = "DELETE FROM ".$this->tableName."

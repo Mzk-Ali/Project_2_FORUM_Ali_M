@@ -15,6 +15,10 @@ final class Topic extends Entity{
     private $lock;
     private $user;
     private $category;
+    private $nbPosts;
+    private $dateLastMsg;
+    private $userMsg;
+    private $lastMsg;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -101,7 +105,66 @@ final class Topic extends Entity{
         return $this;
     }
 
+
+    // Get the value of nbPosts
+    public function getNbPosts()
+    {
+        return $this->nbPosts;
+    }
+
+    // Set the value of nbPosts
+    public function setNbPosts($nbPosts)
+    {
+        $this->nbPosts = $nbPosts;
+
+        return $this;
+    }
+
+    
+    // Get the value of dateLastMsg
+    public function getDateLastMsg()
+    {
+        return $this->dateLastMsg;
+    }
+
+    // Set the value of dateLastMsg
+    public function setDateLastMsg($dateLastMsg)
+    {
+        $this->dateLastMsg = $dateLastMsg;
+
+        return $this;
+    }
+
+    // Get the value of userMsg
+    public function getUserMsg()
+    {
+        return $this->userMsg;
+    }
+
+    // Set the value of userMsg
+    public function setUserMsg($userMsg)
+    {
+        $this->userMsg = $userMsg;
+
+        return $this;
+    }
+
+    // Get the value of lastMsg
+    public function getLastMsg()
+    {
+        return $this->lastMsg;
+    }
+
+    // Set the value of lastMsg
+    public function setLastMsg($lastMsg)
+    {
+        $this->lastMsg = $lastMsg;
+
+        return $this;
+    }
+
     public function __toString(){
         return $this->title;
     }
+
 }

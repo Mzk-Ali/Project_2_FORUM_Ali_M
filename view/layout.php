@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
         <title>FORUM</title>
     </head>
@@ -14,13 +15,34 @@
         <div id="wrapper"> 
             <div id="mainpage">
                 <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
-                <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
-                <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+                <?php if(isset($_SESSION["success"]) || isset($_SESSION["warning"]) || isset($_SESSION["error"])) { ?>
+                <div class="container_alert <?php 
+                    if(isset($_SESSION["success"])){echo "alert_validate";}
+                    elseif(isset($_SESSION["warning"])){echo "alert_warning";}
+                    elseif(isset($_SESSION["error"])){echo "alert_error";}
+                    else{echo "";}
+                    ?> none">
+                    <span class="logo_alert">
+                        <i class="ri-error-warning-fill"></i>
+                    </span>
+                    <span class="message_alert">
+                        <?= App\Session::getFlash("success"); ?>
+                        <?= App\Session::getFlash("warning"); ?>
+                        <?= App\Session::getFlash("error"); ?>
+                    </span>
+                    <div class="close_btn_alert">
+                        <span class="close_btn">
+                            <i class="ri-close-circle-fill"></i>
+                        </span>
+                    </div>
+                </div>
+                <?php  } ?>
+
                 <header>
                     <nav>
                         <div class="nav_left">
                             <div class="nav_home">
-                                <a href="">HOME</a>
+                                <a href="index.php?ctrl=home&action=index">HOME</a>
                             </div>
                             <div class="nav_search">
                                 <input type="text" name="search" id="search" placeholder=" Rechercher">
@@ -38,9 +60,12 @@
                                     <a href="index.php?ctrl=forum&action=myFollowUp&id=<?= App\Session::getUser()->getId() ?>">MesSujets</a>
                                 </div>
                                 <div class="nav_profil">
-                                    <img src="./public/img/avatar_batman.png" alt="">
+                                    <img src="<?= App\Session::getUser()->getAvatar() ?>" alt="">
                                 </div>
                                 <div class="menu_profil hidden">
+                                    <div class="pseudo_user">
+                                        <span>Bienvenue <?= App\Session::getUser() ?></span>
+                                    </div>
                                     <div class="logout">
                                         <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                     </div>

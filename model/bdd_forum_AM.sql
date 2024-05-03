@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.category : ~6 rows (environ)
+-- Listage des données de la table forumalim.category : ~8 rows (environ)
 INSERT INTO `category` (`id_category`, `name`) VALUES
 	(1, 'Jeux video'),
 	(2, 'Sports'),
@@ -49,11 +49,9 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK_post_topic` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.post : ~3 rows (environ)
-INSERT INTO `post` (`id_post`, `message`, `creationDate`, `user_id`, `topic_id`) VALUES
-	(1, 'J\'ai joué mario pendant ma jeunesse et je voulais avoir votre avis', '2024-04-24 16:41:25', 4, 1);
+-- Listage des données de la table forumalim.post : ~0 rows (environ)
 
 -- Listage de la structure de table forumalim. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -68,12 +66,9 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_topic_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK_topic_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.topic : ~3 rows (environ)
-INSERT INTO `topic` (`id_topic`, `title`, `creationDate`, `lock`, `category_id`, `user_id`) VALUES
-	(1, 'Mario Bros est-il encore un grand jeu ?', '2024-04-24 16:39:42', 0, 1, 4),
-	(2, 'C\'est un topic Test !!!!!', '2024-04-24 16:40:17', 0, 1, 4);
+-- Listage des données de la table forumalim.topic : ~2 rows (environ)
 
 -- Listage de la structure de table forumalim. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -89,12 +84,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `pseudo` (`pseudo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.user : ~3 rows (environ)
+-- Listage des données de la table forumalim.user : ~4 rows (environ)
 INSERT INTO `user` (`id_user`, `mail`, `pseudo`, `password`, `dateInscription`, `role`, `avatar`) VALUES
 	(1, 'admin@admin.fr', 'ADMIN', '$2y$10$4YC0GZ1Oj6AQfqgLy7SM0eRPn9EMOrqkUJvd2/wy1wtNKZspXojIa', '2024-04-24 11:58:00', 'admin', './public/img/avatar_mouton.png'),
-	(2, 'ali.marzak@forum.fr', 'AliM', '$10$R0rwuLKlVi6mRjkjq3DbC.5AByxutgyO3iQZJyvenAPBgx46BAZD6', '2024-04-22 16:43:07', 'moderateur', './public/img/avatar_man.png'),
-	(3, 'eren@live.fr', 'ErN', 'Eren00001111$', '2024-04-22 16:45:02', 'membre', './public/img/avatar_batman.png'),
-	(4, 'test@live.fr', 'test', '$2y$10$R0rwuLKlVi6mRjkjq3DbC.5AByxutgyO3iQZJyvenAPBgx46BAZD6', '2024-04-24 09:54:08', 'membre', './public/img/avatar_mouton.png');
+	(2, 'ali.marzak@forum.fr', 'AliM', '$10$R0rwuLKlVi6mRjkjq3DbC.5AByxutgyO3iQZJyvenAPBgx46BAZD6', '2024-04-22 16:43:07', 'moderateur', './public/img/avatar_man.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

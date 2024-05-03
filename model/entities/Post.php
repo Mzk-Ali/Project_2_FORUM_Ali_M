@@ -14,6 +14,9 @@ final class Post extends Entity{
     private $creationDate;
     private $user;
     private $topic;
+    private $nbPosts;
+    private $dateLastMsg;
+    private $userMsg;
 
     // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
     public function __construct($data){         
@@ -100,7 +103,48 @@ final class Post extends Entity{
         return $this;
     }
 
+    // Get the value of nbPosts
+    public function getNbPosts()
+    {
+        return $this->nbPosts;
+    }
 
+    // Set the value of nbPosts
+    public function setNbPosts($nbPosts)
+    {
+        $this->nbPosts = $nbPosts;
+
+        return $this;
+    }
+
+    
+    // Get the value of dateLastMsg
+    public function getDateLastMsg()
+    {
+        return $this->dateLastMsg;
+    }
+
+    // Set the value of dateLastMsg
+    public function setDateLastMsg($dateLastMsg)
+    {
+        $this->dateLastMsg = $dateLastMsg;
+
+        return $this;
+    }
+
+    // Get the value of userMsg
+    public function getUserMsg()
+    {
+        return $this->userMsg;
+    }
+
+    // Set the value of userMsg
+    public function setUserMsg($userMsg)
+    {
+        $this->userMsg = $userMsg;
+
+        return $this;
+    }
 
     public function __toString(){
         return $this->message;

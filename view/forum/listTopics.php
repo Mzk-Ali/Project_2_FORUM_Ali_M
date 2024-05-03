@@ -1,9 +1,9 @@
 <?php
     $category = $result["data"]['category']; 
-    $topics = $result["data"]['topics']; 
+    $topics = $result["data"]['topics'];  
 ?>
 
-<h1>Liste des topics : <?=$category?></h1>
+<h1>Liste des topics de la catégorie : <?=$category?></h1>
 
 
 <?php
@@ -13,11 +13,11 @@ if(App\Session::getUser())
         <div class="container_addTopic">
             <div class="addTopic">
                 <div class="titleTopic">
-                    <label for="title">Titre du Topic : </label>
+                    <label for="title"><b>Titre du Topic : </b></label>
                     <input name="title" id="title" type="text" placeholder="Insérez le titre">
-                </div>
+                </div><br>
                 <div class="firstMessage">
-                    <label for="message">Premier Message : </label>
+                    <label for="message"><b>Premier Message : </b></label>
                     <textarea name="message" id="message" placeholder="Insérez le 1er message"></textarea>
                 </div>
             </div>
@@ -28,6 +28,7 @@ if(App\Session::getUser())
     </form>
 <?php } ?>
 
+<?php if($topics){ ?>
 <div class="container_infoPage_and_topic">
     <div class="infoPage">
 
@@ -35,28 +36,38 @@ if(App\Session::getUser())
     <div class="topic">
         <ul>
             <?php
-            foreach($topics as $topic ){ ?>
+            // foreach ($topics as $topic) {
+            //     var_dump($topic);
+            // } die;
+
+            foreach($topics as $topic ){ 
+                // var_dump($topic->getNbPosts()); die;
+                ?>
                 <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">
                     <li>
                         <div class="statut_topic">
-                            <span>STATUT</span>
+                            <b><span>STATUT</span></b>
+                            <div class="circle_statut_topic <?php if($topic->getLock() == 1){echo "statut_lock";} ?>"></div>
                         </div>
+                        <hr>
                         <div class="sujet_topic">
-                            <span><?= $topic ?></span>
-                            <p>Debut du message le plus like</p>
+                            <b><span><?= $topic ?></span></b><br><br>
+                            <p><?= $topic->getLastMsg() ?></p>
                         </div>
+                        <hr>
                         <div class="infos_topic">
-                            <span>Sujet crée par :</span>
+                            <b><span>Sujet crée par :</span></b>
                             <p><?= $topic->getUser() ?></p>
-                            <span>Le :</span>
+                            <b><span>Le :</span></b>
                             <p><?= $topic->getCreationDate() ?></p>
                         </div>
+                        <hr>
                         <div class="infos_suppl">
-                            <span>Dernier Message par : </span>
-                            <p></p>
-                            <span>Le :</span>
-                            <p></p>
-                            <p>Nbr de message</p>
+                            <b><span>Dernier Message par : </span></b>
+                            <p><?= $topic->getUserMsg() ?></p>
+                            <b><span>Le :</span></b>
+                            <p><?= $topic->getDateLastMsg() ?></p><br>
+                            <p><?= $topic->getNbPosts() ?> message(s)</p>
                         </div>
                     </li>
                 </a>
@@ -64,6 +75,12 @@ if(App\Session::getUser())
         </ul>
     </div>
 </div>
+<?php } 
+else{ ?>
+    <p class="info_topic_empty">
+        Cette catégorie ne contient aucun topic. Soyez le premier à créer un topic dans cette catégorie !!
+    </p>
+<?php }?>
 
 
 

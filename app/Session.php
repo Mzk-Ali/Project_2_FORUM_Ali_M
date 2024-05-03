@@ -3,7 +3,7 @@ namespace App;
 
 class Session{
 
-    private static $categories = ['error', 'success'];
+    private static $categories = ['error', 'warning', 'success'];
 
     /**
     *   ajoute un message en session, dans la catégorie $categ

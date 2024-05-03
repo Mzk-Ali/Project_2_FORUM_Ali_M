@@ -34,9 +34,16 @@ class PostManager extends Manager{
     // récupérer tous les posts d'un utilisateur spécifique (par son id)
     public function findPostsByUser($id) {
 
-        $sql = "SELECT * 
+        $sql = "SELECT p1.topic_id, p2.dateLastMsg, p1.message, p2.nbPosts, u.pseudo AS userMsg
+                FROM post p1
+                JOIN
+                (SELECT topic_id, MAX(creationDate) AS dateLastMsg, COUNT(topic_id) AS nbPosts
                 FROM ".$this->tableName." p 
-                WHERE p.user_id = :id";
+                WHERE p.user_id = :id
+                GROUP BY topic_id ) p2
+                ON p1.topic_id = p2.topic_id AND p1.creationDate = p2.dateLastMsg
+                JOIN user u
+                ON u.id_user = p1.user_id";
         
         // la requête renvoie plusieurs enregistrements --> getMultipleResults
         return  $this->getMultipleResults(
