@@ -1,4 +1,4 @@
-# Projet Forum
+# Projet Forum (EN COURS)
 _Il s'agit du 3eme projet en PHP chez ELAN Formation_
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-php.svg)
@@ -10,6 +10,9 @@ _Il s'agit du 3eme projet en PHP chez ELAN Formation_
 
 Le projet Forum est un site WEB responsive qui est un forum avec plusieurs catégories auquel un utilisateur peut ajouter des topics et des posts. Le forum a un système d'inscription et d'authentification permettant d'accéder ou de restreindre certaines possibilités selon le rôle de l'utilisateur dans le forum.
 Il y a possiblité d'ajouter, modifier ou encore supprimé des topics et posts. De plus, un utilisateur ou un modérateur peut verrouillé un topic.
+
+
+![image](https://github.com/Mzk-Ali/Project_2_FORUM_Ali_M/assets/161448982/69640a2b-e779-4100-a943-56f7d16394d4)
 
 
 
@@ -51,6 +54,9 @@ Pour lancer votre projet :
 Utilisation de figma pour la création de mockup.
 
 
+![image](https://github.com/Mzk-Ali/Project_2_FORUM_Ali_M/assets/161448982/64474ced-9988-4621-8e2e-ce61af619ef3)
+
+
 ### Arborescence du projet
 
 Pour le Design Pattern du projet, nous avons utilisé l'architecture MVC (Modèle-Vue-Controller) permettant l'agencement du code.
@@ -71,6 +77,11 @@ Pour le Design Pattern du projet, nous avons utilisé l'architecture MVC (Modèl
   - _Ensemble des vues du site_
 - index.php
 
+### Gestion des failles
+
+- Injection SQL
+- Faille de sécurité XSS
+- 
 
 ## Fabriqué avec
 
