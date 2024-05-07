@@ -7,9 +7,33 @@
 
 <h2>Mes topics</h2>
 
+<?php if($topics){ ?>
 <div class="container_infoPage_and_topic">
     <div class="infoPage">
-
+        <div class="preceding_page">
+            <i class="ri-arrow-left-line"></i>
+            <span>Page précedente</span>
+        </div>
+        <div class="main_infoPage">
+            <div class="numPage">
+                <div class="contain_num select">1</div>
+                <div class="contain_num">2</div>
+                <div class="contain_num">3</div>
+                <div class="contain_num">4</div>
+            </div>
+            <div class="sizePage">
+                <div class="numSizePage">
+                    <div class="contain_num select">4</div>
+                    <div class="contain_num">8</div>
+                    <div class="contain_num">12</div>
+                </div>
+                <span> per Page</span>
+            </div>
+        </div>
+        <div class="next_page">
+            <span>Page suivante</span>
+            <i class="ri-arrow-right-line"></i>
+        </div>
     </div>
     <div class="topic">
         <ul>
@@ -23,7 +47,7 @@
                         </div>
                         <hr>
                         <div class="sujet_topic">
-                            <span><b>Titre du topic : </b><?= $topic ?></span><br><br>
+                            <span><b>Titre du topic : </b><?= $topic ?></span><br>
                             <p><?= $topic->getLastMsg() ?></p>
                         </div>
                         <hr>
@@ -47,14 +71,42 @@
         </ul>
     </div>
 </div>
-
+<?php } 
+else{ ?>
+    <p class="info_topic_empty">
+        Vous n'avez commencé aucun topic. N'hésitez pas à en commencer !!
+    </p>
+<?php }?>
 
 <h2>Topics où j'ai posté</h2>
 
-
+<?php if($posts){ ?>
 <div class="container_infoPage_and_topic">
     <div class="infoPage">
-
+        <div class="preceding_page">
+            <i class="ri-arrow-left-line"></i>
+            <span>Page précedente</span>
+        </div>
+        <div class="main_infoPage">
+            <div class="numPage">
+                <div class="contain_num select">1</div>
+                <div class="contain_num">2</div>
+                <div class="contain_num">3</div>
+                <div class="contain_num">4</div>
+            </div>
+            <div class="sizePage">
+                <div class="numSizePage">
+                    <div class="contain_num select">4</div>
+                    <div class="contain_num">8</div>
+                    <div class="contain_num">12</div>
+                </div>
+                <span> per Page</span>
+            </div>
+        </div>
+        <div class="next_page">
+            <span>Page suivante</span>
+            <i class="ri-arrow-right-line"></i>
+        </div>
     </div>
     <div class="topic">
         <ul>
@@ -70,7 +122,7 @@
                         </div>
                         <hr>
                         <div class="sujet_topic">
-                            <span><b>Titre du topic : </b><?= $post->getTopic() ?></span><br><br>
+                            <span><b>Titre du topic : </b><?= $post->getTopic() ?></span><br>
                             <p><?= $post->getMessage() ?></p>
                         </div>
                         <hr>
@@ -92,4 +144,10 @@
         </ul>
     </div>
 </div>
+<?php } 
+else{ ?>
+    <p class="info_topic_empty">
+        Vous n'avez rien posté. N'hésitez pas à interagir en créant un topic ou en postant sur les topics d'autres utilisateurs !!
+    </p>
+<?php }?>
 

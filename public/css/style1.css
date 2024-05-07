@@ -1,0 +1,935 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: rgb(0, 122, 156);
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 5vh;
+}
+
+h2{
+    margin: 5vh 10vw;
+    padding-left: 2vw;
+    border-left: 10px solid #163e6d;
+}
+
+a, i{
+    text-decoration: none;
+    color: inherit;
+}
+
+main{
+    margin-top: 8vh;
+    padding: 8vh 0;
+}
+
+ul li{
+    list-style: none;
+}
+
+hr{
+    border: none;
+    width: 1px;
+    background-color: rgb(39, 39, 39);
+}
+
+/* ---------------------------- ALERTE MESSAGE ------------------------------------------------- */
+.container_alert{
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    width: 60vw;
+    position: fixed;
+    top: 85%;
+    right: 0;
+}
+
+.alert_validate{
+    background-color: rgb(196, 255, 196);
+    border-left: 10px solid green;
+    box-shadow: 0px 10px 20px rgb(196, 255, 196);
+    color: rgb(4, 119, 48);
+}
+
+.alert_warning{
+    background-color: rgb(255, 204, 110);
+    border-left: 10px solid orange;
+    box-shadow: 0px 10px 20px rgb(255, 204, 110);
+    color: rgb(148, 99, 7);
+}
+
+.alert_error{
+    background-color: rgb(247, 130, 130);
+    border-left: 10px solid red;
+    box-shadow: 0px 10px 20px rgb(247, 130, 130);
+    color: rgb(146, 8, 8);
+}
+
+.container_alert.show{
+    animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide{
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-15px);
+    }
+}
+
+.container_alert.hide{
+    animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide{
+    0%{
+        transform: translateX(-10px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(110%);
+    }
+}
+
+.container_alert.none{
+    display: none;
+}
+
+
+.logo_alert{
+    width: 10%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 150%;
+}
+
+.message_alert{
+    width: 75%;
+    padding: 10px;
+}
+
+.close_btn_alert{
+    background-color: rgba(128, 128, 128, 0.2);
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.close_btn{
+    transition: 0.5s;
+}
+
+.close_btn_alert:hover .close_btn{
+    transform: scale(1.3);
+}
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------------ NAVBAR ------------------------------------------------- */
+nav{
+    position: fixed;
+    top: 0;
+    display: flex;
+    background-color: #CEE5FF;
+    width: 100%;
+    height: 8vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    font-size: 100%;
+    font-weight: bolder;
+}
+
+.nav_profil img{
+    width: 40px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.nav_search{
+    width: 70%;
+}
+
+.nav_search input{
+    padding: 5px 10px;
+    width: 100%;
+    height: 3vh;
+    border: none;
+    border-radius: 10px;
+}
+.nav_profil img:hover{
+    transform: scale(1.1);
+}
+
+.nav_left{
+    display: flex;
+    align-items: center;
+    width: 60vw;
+}
+.nav_right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+    width: 30vw;
+}
+
+.menu_profil{
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 30px;
+    /* gap: 70px; */
+    background-color: rgba(221, 218, 218, 0.8);
+    width: 20vw;
+    height: 30vh;
+    position: fixed;
+    top: 8vh;
+    right: 0;
+}
+
+.menu_profil .login a{
+    background-color: green;
+    padding: 2px 5px;
+    border-radius: 20px;
+    
+}
+
+.menu_profil .logout a{
+    background-color: rgba(156, 2, 2, 0.2);
+    padding: 2px 5px;
+    border-radius: 20px;
+}
+
+.menu_profil .login, .menu_profil .signIn, .menu_profil .logout{
+    transition: 0.5s;
+}
+
+.menu_profil .login:hover, .menu_profil .signIn:hover, .menu_profil .logout:hover{
+    transform: scale(1.1);
+}
+
+.menu_profil .signIn a{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.hidden{
+    display: none;
+}
+
+.nav_home{
+    width: 20%;
+}
+
+.nav_categorie, .nav_mesSujets{
+    width: 40%;
+}
+
+.nav_profil{
+    width: 20%;
+}
+
+.nav_home a, .nav_categorie a, .nav_mesSujets a{
+    padding: 5% 15%;
+    font-size: 100%;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.nav_home a:hover, .nav_categorie a:hover, .nav_mesSujets a:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-10px);
+}
+
+.listUsers{
+    position: fixed;
+    top: 10vh;
+    left: 1vw;
+    width: 50px;
+    border: solid 2px rgba(22,146,171,255);
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.listUsers:hover{
+    transform: translateY(-5px);
+}
+
+.listUsers img{
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* ------------------------------- modif User -------------------------------------------------- */
+.button_modif, .button_delete{
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.modif .button_modif{
+    background-color: rgba(149, 194, 247, 0.4);
+    transition: 1s;
+}
+
+.modif .button_modif:hover{
+    background-color: rgba(149, 194, 247, 0.8);
+}
+
+.delete .button_delete{
+    background-color: rgba(167, 48, 48, 0.6);
+    transition: 1s;
+}
+
+.delete .button_delete:hover{
+    background-color: rgba(167, 48, 48, 0.8);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* ------------------------------- REGISTER/ LOGIN --------------------------------------------- */
+.form_register, .form_login{
+    background-color: rgba(149, 194, 247, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    border-radius: 30px;
+    width: 60vw;
+    margin: 5vh auto;
+    padding: 10%;
+    font-weight: bolder;
+    color: #163e6d;
+}
+
+.form_register div, .form_login div{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form_register div input, .form_login div input{
+    height: 40px;
+    padding: 10px;
+    border: none;
+    box-shadow: 1px 1px 1px rgba(22, 62, 109, 0.2);
+}
+
+.sign_in input, .login input{
+    border-radius: 20px;
+    margin: auto;
+    width: 60%;
+    border: none;
+    background-color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.sign_in input:hover, .login input:hover{
+    background-color: rgba(0, 60, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.redirection_login, .redirection_signIn{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+/* --------------------------------------------------------------------------------------------- */
+
+
+
+/* ------------------------------------ Categorie ---------------------------------------------- */
+.container_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20vh auto;
+    width: 80vw;
+    gap: 5%;
+    row-gap: 50px;
+}
+
+.container_card a{
+    width: 20%;
+}
+
+.card{
+    width: 100%;
+    height: 20vh;
+    border-radius: 10px;
+    border: solid 2px #95c2f7;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.img_category{
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.nom_category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CEE5FF;
+    height: 20%;
+}
+
+.img_category img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img{
+    transform: scale(1.05);
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+/* --------------------------------------------------------------------------------------------- */
+
+
+/* -------------------------------- Liste topic by ID ------------------------------------------ */
+.container_infoPage_and_topic{
+    margin: auto;
+    border: solid 4px black;
+    border-radius: 20px;
+    width: 80vw;
+    height: 600px;
+    overflow: hidden;
+}
+
+.form_addTopic{
+    width: 80vw;
+    margin: 30px auto;
+    border: solid 4px #CEE5FF;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.container_addTopic{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTopic{
+    width: 88%;
+}
+
+.titleTopic input{
+    background-color: rgba(196, 196, 196, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 88%;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.firstMessage{
+    display: flex;
+    flex-direction: column;
+}
+
+.firstMessage textarea{
+    background-color: rgba(196, 196, 196, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    font-style: italic;
+}
+
+.forumulaire_add_button{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.button_add{
+    border: none;
+    border-radius: 20px;
+    background-color: #CEE5FF;
+    padding: 10px 20px;
+    font-weight: bolder;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.button_add:hover{
+    transform: scale(1.1);
+}
+
+.infoPage{
+    height: 5%;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preceding_page, .next_page{
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 2px 5px;
+}
+
+.preceding_page:hover, .next_page:hover{
+    background-color: rgba(206, 229, 255, 0.8);
+    border-radius: 5px;
+}
+
+.main_infoPage, .main_infoPage .numPage, .main_infoPage .sizePage, .numSizePage{
+    display: flex;
+    align-items: center;
+}
+
+.sizePage{
+    gap: 10px;
+}
+
+.numPage, .numSizePage{
+    gap: 10px;
+}
+
+.main_infoPage{
+    gap: 50px;
+}
+
+.contain_num{
+    background-color: rgba(206, 229, 255, 0.4);
+    padding: 3px 8px;
+    border: solid 1px rgba(22, 62, 109, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contain_num:hover{
+    background-color: rgba(206, 229, 255, 0.8);
+}
+
+.select{
+    background-color: rgba(22, 62, 109, 0.6);
+}
+
+.topic ul a li{
+    display: flex;
+    /* align-items: center; */
+    transition: 0.5s;
+    /* height: 8vh; */
+    border-top: 1px solid black;
+    width: 95%;
+    margin: auto;
+    padding: 5px 0;
+}
+
+.topic ul a li:hover{
+    background-color: #CEE5FF;
+}
+
+.statut_topic{
+    width: 10%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+.sujet_topic{
+    width: 50%;
+}
+
+/* .sujet_topic span{
+    display: block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+} */
+
+.sujet_topic span, .sujet_topic p{
+    display: -webkit-box;
+    width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.infos_topic p, .infos_suppl p{
+    text-align: center;
+}
+
+.infos_topic, .infos_suppl{
+    width: 20%;
+}
+
+.statut_topic, .sujet_topic, .infos_topic, .infos_suppl{
+    padding: 5px 10px;
+    height: 100%;
+}
+
+.info_topic_empty{
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    font-size: larger;
+    color: #163e6d;
+}
+
+.circle_statut_topic{
+    background-color: greenyellow;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: dashed 1px black;
+}
+
+.statut_lock{
+    background-color: red;
+}
+/* --------------------------------------------------------------------------------------------- */
+
+/* -------------------------------- Liste posts by ID ------------------------------------------ */
+.container_postsTopic, .container_answer{
+    width: 90vw;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.container_answer{
+    width: 80vw;
+    padding: 10px 40px;
+    background-color: #ACD3FF;
+}
+
+.container_info_user_and_post{
+    display: flex;
+    margin: auto;
+    width: 90%;
+    background-color: rgba(206, 229, 255, 0.3);
+    border: solid 1px black;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.infos_user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 15%;
+    padding: 10px;
+}
+
+.modif_post{
+    cursor: pointer;
+}
+
+.img_user{
+    width: 80%;
+}
+
+.img_user img{
+    width: 100%;
+}
+
+.name_user, .role_user{
+    text-align: center;
+}
+
+.role_user span{
+    background-color: rgb(7, 238, 7);
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.container_post{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header_post, .footer_post{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.main_post{
+    width: 100%;
+    /* height: 70px; */
+}
+
+.main_post p{
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100%;
+    min-height: 100px;
+}
+
+.main_post form{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 4px;
+}
+.main_post form textarea{
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+}
+
+.button_modfiPost{
+    background-color: rgba(22, 62, 109, 0.3);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.button_modfiPost:hover{
+    transform: scale(1.1);
+}
+
+.button_answer{
+    display: flex;
+    justify-content: end;
+}
+
+.main_answer{
+    display: flex;
+}
+
+.myprofil{
+    width: 20%;
+}
+
+.main_answer textarea{
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.container_button{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    width: 80vw;
+    margin: 5vh auto;
+}
+
+.container_button input{
+    padding: 10px;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+}
+
+/* .button_lock_topic input{
+    background-color: #CEE5FF;
+} */
+
+.button_delete_topic input{
+    background-color: rgba(112, 6, 6, 0.3);
+    transition: 1s;
+}
+
+.button_delete_topic input:hover{
+    background-color: rgba(112, 6, 6, 0.7);
+}
+
+.container_button .unlock input{
+    background-color: rgba(173, 255, 47, 0.5);
+    transition: 1s;
+}
+
+.container_button .unlock input:hover{
+    background-color: rgb(173, 255, 47);
+}
+
+.container_button .lock input{
+    background-color: rgba(238, 42, 42, 0.5);
+    transition: 1s;
+}
+
+.container_button .lock input:hover{
+    background-color: rgba(238, 42, 42, 1);
+}
+
+
+/* --------------------------------------------------------------------------------------------- */
+
+/* ------------------------------------ listUsers ---------------------------------------------- */
+.container_listUsers{
+    width: 90vw;
+    margin: 10vh auto;
+    background-color: #CEE5FF;
+    border-radius: 30px;
+    
+    padding: 5%;
+}
+
+.container_listUsers li{
+    display: flex;
+    gap: 2%;
+    align-items: center;
+    border-bottom: 1px solid #163e6d;
+    padding: 1%;
+    transition: 0.5s;
+}
+
+.user_li:hover{
+    background-color:rgba(22, 62, 109, 0.2);
+}
+
+.user_li span{
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.user_avatar{
+    width: 5%;
+}
+
+.user_avatar img{
+    width: 100%;
+}
+
+.user_mail{
+    width: 25%;
+}
+
+.user_pseudo{
+    width: 15%;
+}
+
+.user_dateInscription{
+    width: 20%;
+}
+
+.user_role{
+    width: 10%;
+}
+.user_role select{
+    border: none;
+    background-color: transparent;
+    padding: 2px;
+}
+
+.user_valider{
+    width: 8%;
+    text-align: center;
+}
+
+.user_valider input{
+    background-color: transparent;
+    border: 1px solid #163e6d;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.user_valider input:hover{
+    background-color: rgba(22, 62, 109, 0.3);
+}
+
+.user_ban{
+    width: 5%;
+}
+
+.user_ban input{
+    background-color: rgba(143, 49, 49, 0.7);
+    border: none;
+    width: 100%;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+    font-size: 70%;
+    color: white;
+    text-align: center;
+}
+
+.user_ban input:hover{
+    background-color: rgba(143, 49, 49, 1);
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+/* -------------------------------------- FOOTER ----------------------------------------------- */
+footer {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    background-color: #CEE5FF;
+    text-align: center;
+  }
+
+
+
+/* --------------------------------------------------------------------------------------------- */

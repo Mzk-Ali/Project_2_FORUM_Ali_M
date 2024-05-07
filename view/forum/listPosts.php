@@ -30,7 +30,7 @@
             <div class="container_post">
                 <div class="header_post">
                     <div class="modif_post">
-                        <?php if($post->getUser() == App\Session::getUser() || App\Session::isAdmin() || App\Session::isModerateur()) { ?>
+                        <?php if(($post->getUser() == App\Session::getUser() || App\Session::isAdmin() || App\Session::isModerateur()) && $topic->getLock() == 0) { ?>
                         <p>Modifier Post</p>
                         <?php } ?>
                     </div>

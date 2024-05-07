@@ -49,14 +49,26 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK_post_topic` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.post : ~0 rows (environ)
+-- Listage des données de la table forumalim.post : ~10 rows (environ)
+INSERT INTO `post` (`id_post`, `message`, `creationDate`, `user_id`, `topic_id`) VALUES
+	(1, '1er message de test!', '2024-04-25 14:22:57', 3, 1),
+	(2, '1er message de test', '2024-04-25 14:23:23', 3, 2),
+	(3, '1er message de test', '2024-04-25 14:23:43', 3, 3),
+	(4, '1er message admin test', '2024-04-25 14:24:36', 1, 4),
+	(5, '2eme message de test\r\n', '2024-04-25 14:25:02', 3, 4),
+	(7, 'oui c&#039;est un test admin', '2024-05-02 13:49:42', 1, 4),
+	(8, 'Ajout message admin', '2024-05-02 14:06:49', 1, 1),
+	(9, 'test ', '2024-05-02 16:31:59', 3, 4),
+	(10, 'Bonjour, \r\nJe voudrais savoir ce qui est enseign&eacute; chez Elan Formation. Je sais qu&#039;il y a beaucoup d&#039;anciens stagiaires de Elan dans ce forum.\r\n\r\nMerci d&#039;avance', '2024-05-07 09:14:46', 3, 6),
+	(11, 'Bonjour,\r\nJe souhaiterai connaitre l&#039;atome le plus connu et le plus utilis&eacute; en physique\r\n\r\nMerci d&#039;avance', '2024-05-07 11:38:21', 3, 7),
+	(12, 'test_modif', '2024-05-07 14:02:47', 2, 1);
 
 -- Listage de la structure de table forumalim. topic
 CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `title` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `creationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lock` tinyint NOT NULL DEFAULT '0',
   `category_id` int DEFAULT '0',
@@ -66,9 +78,16 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_topic_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK_topic_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.topic : ~2 rows (environ)
+-- Listage des données de la table forumalim.topic : ~6 rows (environ)
+INSERT INTO `topic` (`id_topic`, `title`, `creationDate`, `lock`, `category_id`, `user_id`) VALUES
+	(1, '1er topic de test', '2024-04-25 14:22:57', 0, 1, 3),
+	(2, '2eme topic de test', '2024-04-25 14:23:23', 1, 1, 3),
+	(3, '3eme topic de test', '2024-04-25 14:23:43', 0, 7, 3),
+	(4, '1er topic admin', '2024-04-25 14:24:36', 0, 1, 1),
+	(6, 'Qu&#039;est-ce qui est enseign&eacute; chez Elan Formation?', '2024-05-07 09:14:46', 0, 3, 3),
+	(7, 'Quel est l&#039;atome le plus connu?', '2024-05-07 11:38:21', 0, 8, 3);
 
 -- Listage de la structure de table forumalim. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -82,12 +101,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`) USING BTREE,
   UNIQUE KEY `mail` (`mail`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forumalim.user : ~4 rows (environ)
+-- Listage des données de la table forumalim.user : ~5 rows (environ)
 INSERT INTO `user` (`id_user`, `mail`, `pseudo`, `password`, `dateInscription`, `role`, `avatar`) VALUES
-	(1, 'admin@admin.fr', 'ADMIN', '$2y$10$4YC0GZ1Oj6AQfqgLy7SM0eRPn9EMOrqkUJvd2/wy1wtNKZspXojIa', '2024-04-24 11:58:00', 'admin', './public/img/avatar_mouton.png'),
-	(2, 'ali.marzak@forum.fr', 'AliM', '$10$R0rwuLKlVi6mRjkjq3DbC.5AByxutgyO3iQZJyvenAPBgx46BAZD6', '2024-04-22 16:43:07', 'moderateur', './public/img/avatar_man.png');
+	(1, 'admin@admin.fr', 'ADMIN', '$2y$10$4YC0GZ1Oj6AQfqgLy7SM0eRPn9EMOrqkUJvd2/wy1wtNKZspXojIa', '2024-04-24 11:58:00', 'admin', './public/img/avatar_admin.png'),
+	(2, 'ali.marzak@forum.fr', 'AliM', '$2y$10$sU/KwEiFJkc/K5dKDIgtIedxcWYaqxzoxcXB0ndubSXA4zFhFT63W', '2024-04-22 16:43:07', 'moderateur', './public/img/avatar_man.png'),
+	(3, '$2y$10$mZZPYEcC0GV1P8LN.Fu1V.spMa5M8OfHj7ouT5NRv1blVvxqTFYJy', 'unknown15', '$2y$10$nJZuHUeXjQ5SUwZD.9byFuvW.HuFehoP6NXFnd1qLtIF4IeUst.T6', '2024-04-25 14:22:25', 'delete', './public/img/avatar_mouton.png'),
+	(4, '$2y$10$Dka9l27ZKLhrQbbGnm6pVOtoSLdkj3PTqlc5gg/RUtjhKtjNSKOEW', 'unknown', '$2y$10$WTASk8q4gpMkvYVtIskny.hVuJBeJfDicLsNELrzD0XUyvDOaIOjq', '2024-05-02 13:35:25', 'delete', './public/img/avatar_mouton.png'),
+	(6, '$2y$10$zfOXNNUCuDf3YoqLpoJww.6nMspvdEJQfYHKIRzfLkSiyXY6zvIhO', 'unknown30', '$2y$10$9SJx1/fadz.ylEst3eZci.glJI.aKVWlo6NwzMiHb0Pphxk.TtiTW', '2024-05-07 11:42:03', 'delete', './public/img/avatar_mouton.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

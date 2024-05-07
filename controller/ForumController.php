@@ -28,6 +28,7 @@ class ForumController extends AbstractController implements ControllerInterface{
         ];
     }
 
+
     public function listTopicsByCategory($id) {
 
         $postManager = new PostManager();
@@ -106,9 +107,9 @@ class ForumController extends AbstractController implements ControllerInterface{
                 // $dataTopic["creationDate"]   = date_create('now')->format('Y-m-d H:i:s');
                 $dataTopic["category_id"]    = $id;
                 $dataTopic["user_id"]        = Session::getUser()->getId();
-    
+                
                 $id_topic = $topicManager->add($dataTopic);
-    
+
                 $data_firstMsg["message"]       = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 // $data_firstMsg["creationDate"]  = date_create('now')->format('Y-m-d H:i:s');
                 $data_firstMsg["user_id"]       = Session::getUser()->getId();
@@ -120,6 +121,7 @@ class ForumController extends AbstractController implements ControllerInterface{
                 $alert_statut = "success";
                 $alert_message = "Le topic a bien été ajouté !";
                 Session::addFlash($alert_statut, $alert_message);
+                
             }
         }
         else{
@@ -134,73 +136,6 @@ class ForumController extends AbstractController implements ControllerInterface{
         $this->redirectTo("forum","listPostsByTopic",$id_topic);
     }
 
-
-    public function listUsers() {
-
-        $userManager    = new UserManager();
-        if(Session::getUser() && Session::getUser()->hasRole("admin"))
-        {
-            $users = $userManager->listUsersForAdmin();
-            // var_dump($users); die;
-        }
-        elseif(Session::getUser() && Session::getUser()->hasRole("moderateur"))
-        {
-            $users = $userManager->listUsersForModerateur();
-        }
-        else{
-            // Message alert: error interdiction d'acces
-            $alert_statut = "error";
-            $alert_message = "Impossible d'accéder à ce lien !";
-            Session::addFlash($alert_statut, $alert_message);
-            $this->redirectTo("forum","index");
-        }
-        
-        return [
-            "view" => VIEW_DIR."forum/listUsers.php",
-            "meta_description" => "Liste des utilisateurs : ",
-            "data" => [
-                "users" => $users,
-            ]
-        ];
-    }
-
-    public function modifUser($id) {
-        $userManager    = new UserManager();
-
-        if(Session::getUser()->hasRole("admin") || Session::getUser()->hasRole("moderateur"))
-        {
-            if(isset($_POST['submit']) && ($_POST["user_role"] == "membre" || $_POST["user_role"] == "moderateur"))
-            {
-                $data_modifRoleUser["role"] = filter_input(INPUT_POST, "user_role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    
-                $userManager->update($id, $data_modifRoleUser);
-
-                // Message alert: succes modification user
-                $alert_statut = "success";
-                $alert_message = "Le rôle de l'utilisateur a bien été modifié !";
-                Session::addFlash($alert_statut, $alert_message);
-            }
-            elseif(isset($_POST['delete']) && (Session::getUser()->hasRole("admin") || Session::getUser()->hasRole("moderateur"))){
-                $user = $userManager->findOneById($id);
-                $data_modifUser["mail"]     = password_hash($user->getMail(), PASSWORD_DEFAULT);
-                $data_modifUser["pseudo"]   = "unknown";
-                $userManager->update($id, $data_modifUser);
-                // Message alert: succes suppression user
-                $alert_statut = "success";
-                $alert_message = "L'utilisateur a bien été banni' !";
-                Session::addFlash($alert_statut, $alert_message);
-            }
-        }
-        else{
-            // Message alert: error interdiction d'acces
-            $alert_statut = "error";
-            $alert_message = "Impossible d'accéder à ce lien !";
-            Session::addFlash($alert_statut, $alert_message);
-            $this->redirectTo("forum","index");
-        }
-
-        $this->redirectTo("forum","listUsers");
-    }
 
     public function modifTopic($id) {
         $topicManager   = new TopicManager();
@@ -227,8 +162,9 @@ class ForumController extends AbstractController implements ControllerInterface{
 
                 $topicManager->update($id, $data_modifTopic);
 
-
                 Session::addFlash($alert_statut, $alert_message);
+
+                $this->redirectTo("forum","listPostsByTopic", $id);
             }
 
             if(isset($_POST['delete'])){
@@ -243,6 +179,8 @@ class ForumController extends AbstractController implements ControllerInterface{
                 $alert_statut = "success";
                 $alert_message = "Le topic et ses posts sont supprimés !";
                 Session::addFlash($alert_statut, $alert_message);
+
+                $this->redirectTo("forum","listTopicsByCategory", $topic->getCategory());
             }
         }
         $this->redirectTo("forum","index");
@@ -262,9 +200,13 @@ class ForumController extends AbstractController implements ControllerInterface{
                 $alert_statut = "success";
                 $alert_message = "Le post a bien été modifié !";
                 Session::addFlash($alert_statut, $alert_message);
+                
+                $this->redirectTo("forum","listPostsByTopic", $post->getTopic());
             }
         }
-        $this->redirectTo("forum","index");
+        else{
+            $this->redirectTo("forum","index");
+        }
     }
 
 

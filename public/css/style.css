@@ -1,29 +1,18 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-h1 {
-    color: rgb(0, 122, 156);
-    text-align: center;
-    font-size: xx-large;
+:root{
+    --size-nav: 8vh;
+    --background-nav: rgb(206, 229, 255);
 }
 
-h2{
-    margin: 5vh 10vw;
-    padding-left: 2vw;
-    border-left: 10px solid #163e6d;
-}
 
 a, i{
     text-decoration: none;
     color: inherit;
-}
-
-main{
-    margin-top: 8vh;
-    padding: 8vh 0;
 }
 
 ul li{
@@ -35,6 +24,23 @@ hr{
     width: 1px;
     background-color: rgb(39, 39, 39);
 }
+
+main{
+    margin-bottom: var(--size-nav);
+    padding: var(--size-nav) 0;
+}
+
+#mainpage{
+    position: relative;
+}
+
+h1{
+    color: rgb(0, 122, 156);
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 5vh;
+}
+
 
 /* ---------------------------- ALERTE MESSAGE ------------------------------------------------- */
 .container_alert{
@@ -146,69 +152,75 @@ hr{
 /* --------------------------------------------------------------------------------------------- */
 
 
+
 /* ------------------------------------ NAVBAR ------------------------------------------------- */
-nav{
+header{
     position: fixed;
-    top: 0;
-    display: flex;
-    background-color: #CEE5FF;
+    bottom: 0;
+    background-color: var(--background-nav);
     width: 100%;
-    height: 8vh;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-    font-size: 100%;
-    font-weight: bolder;
+    height: var(--size-nav);
 }
 
-.nav_profil img{
-    width: 40px;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.nav_search{
-    width: 70%;
-}
-
-.nav_search input{
-    padding: 5px 10px;
+nav{
     width: 100%;
-    height: 3vh;
-    border: none;
-    border-radius: 10px;
-}
-.nav_profil img:hover{
-    transform: scale(1.1);
+    height: 100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    font-size: 40px;
 }
 
-.nav_left{
+nav div{
     display: flex;
     align-items: center;
-    width: 60vw;
-}
-.nav_right{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2%;
-    width: 30vw;
+    justify-content: center;
+    height: 100%;
+    width: 20vw;
 }
 
-.menu_profil{
-    /* display: none; */
+nav a{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 30px;
-    gap: 30px;
-    background-color: rgba(207, 207, 207, 0.2);
-    width: 20vw;
-    height: 30vh;
+    height: 100%;
+    width: 100%;
+}
+
+.nav_profil, nav img{
+    display: flex;
+    align-items: center;
+    height: 80%;
+}
+
+
+
+.desktop{
+    display: none;
+}
+
+
+
+
+.menu_profil{
     position: fixed;
-    top: 8vh;
+    background-color: rgba(221, 218, 218, 0.8);
+    bottom: var(--size-nav);
     right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 30px;
+    /* gap: 70px; */
+    width: 80vw;
+    height: 30vh;
+    font-size: small;
+}
+
+.menu_profil div{
+    height: 20%;
+    width: 70%;
 }
 
 .menu_profil .login a{
@@ -233,61 +245,35 @@ nav{
 }
 
 .menu_profil .signIn a{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 10px 20px;
     border-radius: 20px;
     transition: 0.5s;
 }
 
+
 .hidden{
     display: none;
 }
 
-.nav_home{
-    width: 20%;
-}
 
-.nav_categorie, .nav_mesSujets{
-    width: 40%;
-}
 
-.nav_profil{
-    width: 20%;
-}
 
-.nav_home a, .nav_categorie a, .nav_mesSujets a{
-    padding: 5% 15%;
-    font-size: 100%;
-    border-radius: 20px;
-    transition: 0.5s;
-}
 
-.nav_home a:hover, .nav_categorie a:hover, .nav_mesSujets a:hover{
-    background-color: white;
-    transform: translateY(-10px);
-}
+
 
 .listUsers{
     position: fixed;
     top: 10vh;
     left: 1vw;
     width: 50px;
-    border: solid 2px rgba(22,146,171,255);
-    border-radius: 10px;
-    padding: 5px;
-    transition: 0.5s;
     cursor: pointer;
 }
 
-.listUsers:hover{
-    transform: translateY(-5px);
-}
-
-.listUsers img{
-    width: 100%;
-}
 
 /* --------------------------------------------------------------------------------------------- */
+
+
 
 
 /* ------------------------------- REGISTER/ LOGIN --------------------------------------------- */
@@ -297,7 +283,7 @@ nav{
     flex-direction: column;
     gap: 2vh;
     border-radius: 30px;
-    width: 60vw;
+    width: 90vw;
     margin: 5vh auto;
     padding: 10%;
     font-weight: bolder;
@@ -314,7 +300,7 @@ nav{
     height: 40px;
     padding: 10px;
     border: none;
-    box-shadow: 1px 1px 2px black;
+    box-shadow: 1px 1px 1px rgba(22, 62, 109, 0.2);
 }
 
 .sign_in input, .login input{
@@ -347,14 +333,14 @@ nav{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 20vh auto;
-    width: 80vw;
+    margin: var(--size-nav) auto;
+    width: 90vw;
     gap: 5%;
     row-gap: 50px;
 }
 
 .container_card a{
-    width: 20%;
+    width: 40%;
 }
 
 .card{
@@ -397,413 +383,7 @@ nav{
 /* --------------------------------------------------------------------------------------------- */
 
 
-/* -------------------------------- Liste topic by ID ------------------------------------------ */
-.container_infoPage_and_topic{
-    margin: auto;
-    border: solid 4px black;
-    border-radius: 20px;
-    width: 80vw;
-    height: 600px;
-    overflow: hidden;
-}
 
-.form_addTopic{
-    width: 80vw;
-    margin: 30px auto;
-    border: solid 4px #CEE5FF;
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-
-.container_addTopic{
-    display: flex;
-    justify-content: space-between;
-}
-
-.addTopic{
-    width: 88%;
-}
-
-.titleTopic input{
-    background-color: rgba(196, 196, 196, 0.3);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    width: 88%;
-    font-weight: bolder;
-    font-style: italic;
-}
-
-.firstMessage{
-    display: flex;
-    flex-direction: column;
-}
-
-.firstMessage textarea{
-    background-color: rgba(196, 196, 196, 0.3);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    width: 100%;
-    height: 100px;
-    font-style: italic;
-}
-
-.forumulaire_add_button{
-    display: flex;
-    justify-content: center;
-    align-items: end;
-}
-
-.button_add{
-    border: none;
-    border-radius: 20px;
-    background-color: #CEE5FF;
-    padding: 10px 20px;
-    font-weight: bolder;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.button_add:hover{
-    transform: scale(1.1);
-}
-
-.infoPage{
-    height: 5%;
-    width: 90%;
-    margin: auto;
-}
-
-.topic ul a li{
-    display: flex;
-    /* align-items: center; */
-    transition: 0.5s;
-    /* height: 8vh; */
-    border-top: 1px solid black;
-    width: 95%;
-    margin: auto;
-    padding: 5px 0;
-}
-
-.topic ul a li:hover{
-    background-color: #CEE5FF;
-}
-
-.statut_topic{
-    width: 10%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
-.sujet_topic{
-    width: 50%;
-}
-
-.infos_topic p, .infos_suppl p{
-    text-align: center;
-}
-
-.infos_topic, .infos_suppl{
-    width: 20%;
-}
-
-.statut_topic, .sujet_topic, .infos_topic, .infos_suppl{
-    padding: 5px 10px;
-    height: 100%;
-}
-
-.info_topic_empty{
-    width: 80vw;
-    margin: auto;
-    text-align: center;
-    font-size: larger;
-    color: #163e6d;
-}
-
-.circle_statut_topic{
-    background-color: greenyellow;
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    border: dashed 1px black;
-}
-
-.statut_lock{
-    background-color: red;
-}
-/* --------------------------------------------------------------------------------------------- */
-
-/* -------------------------------- Liste posts by ID ------------------------------------------ */
-.container_postsTopic, .container_answer{
-    width: 90vw;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.container_answer{
-    width: 80vw;
-    padding: 10px 40px;
-    background-color: #ACD3FF;
-}
-
-.container_info_user_and_post{
-    display: flex;
-    margin: auto;
-    width: 90%;
-    background-color: rgba(206, 229, 255, 0.3);
-    border: solid 1px black;
-    border-radius: 20px;
-    padding: 10px 15px;
-}
-
-.infos_user{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 5px;
-    width: 15%;
-    padding: 10px;
-}
-
-.modif_post{
-    cursor: pointer;
-}
-
-.img_user{
-    width: 80%;
-}
-
-.img_user img{
-    width: 100%;
-}
-
-.name_user, .role_user{
-    text-align: center;
-}
-
-.role_user span{
-    background-color: rgb(7, 238, 7);
-    padding: 2px 5px;
-    border-radius: 10px;
-}
-
-.container_post{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.header_post, .footer_post{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
-.main_post{
-    width: 100%;
-    /* height: 70px; */
-}
-
-.main_post p{
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px 10px;
-    width: 100%;
-    min-height: 100px;
-}
-
-.main_post form{
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: 4px;
-}
-.main_post form textarea{
-    width: 100%;
-    height: 100%;
-    padding: 5px 10px;
-}
-
-.button_modfiPost{
-    background-color: rgba(22, 62, 109, 0.3);
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.button_modfiPost:hover{
-    transform: scale(1.1);
-}
-
-.button_answer{
-    display: flex;
-    justify-content: end;
-}
-
-.main_answer{
-    display: flex;
-}
-
-.myprofil{
-    width: 20%;
-}
-
-.main_answer textarea{
-    width: 80%;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-}
-
-
-.container_button{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 20px;
-    width: 80vw;
-    margin: 5vh auto;
-}
-
-.container_button input{
-    padding: 10px;
-    font-weight: bolder;
-    border: none;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.container_button input:hover{
-    transform: scale(1.1);
-}
-
-.button_lock_topic input{
-    background-color: #CEE5FF;
-}
-
-.button_delete_topic input{
-    background-color: rgba(112, 6, 6, 0.5);
-}
-
-.container_button .unlock input{
-    background-color: greenyellow;
-}
-
-.container_button .lock input{
-    background-color: rgba(238, 42, 42, 0.6);
-}
-
-
-/* --------------------------------------------------------------------------------------------- */
-
-/* ------------------------------------ listUsers ---------------------------------------------- */
-.container_listUsers{
-    width: 90vw;
-    margin: 10vh auto;
-    background-color: #CEE5FF;
-    border-radius: 30px;
-    
-    padding: 5%;
-}
-
-.container_listUsers li{
-    display: flex;
-    gap: 2%;
-    align-items: center;
-    border-bottom: 1px solid #163e6d;
-    padding: 1%;
-    transition: 0.5s;
-}
-
-.user_li:hover{
-    background-color:rgba(22, 62, 109, 0.2);
-}
-
-.user_li span{
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.user_avatar{
-    width: 5%;
-}
-
-.user_avatar img{
-    width: 100%;
-}
-
-.user_mail{
-    width: 25%;
-}
-
-.user_pseudo{
-    width: 15%;
-}
-
-.user_dateInscription{
-    width: 20%;
-}
-
-.user_role{
-    width: 10%;
-}
-.user_role select{
-    border: none;
-    background-color: transparent;
-    padding: 2px;
-}
-
-.user_valider{
-    width: 8%;
-    text-align: center;
-}
-
-.user_valider input{
-    background-color: transparent;
-    border: 1px solid #163e6d;
-    padding: 4px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.5s;
-}
-
-.user_valider input:hover{
-    transform: scale(1.1);
-}
-
-.user_ban{
-    width: 5%;
-}
-
-.user_ban input{
-    background-color: rgb(143, 49, 49);
-    border: none;
-    width: 100%;
-    padding: 4px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.5s;
-    font-size: 70%;
-    color: white;
-    text-align: center;
-}
-
-.user_ban input:hover{
-    transform: scale(1.2);
-}
-
-/* --------------------------------------------------------------------------------------------- */
 
 
 
@@ -814,7 +394,7 @@ nav{
 
 /* -------------------------------------- FOOTER ----------------------------------------------- */
 footer {
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;

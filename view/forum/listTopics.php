@@ -31,7 +31,30 @@ if(App\Session::getUser())
 <?php if($topics){ ?>
 <div class="container_infoPage_and_topic">
     <div class="infoPage">
-
+        <div class="preceding_page">
+            <i class="ri-arrow-left-line"></i>
+            <span>Page précedente</span>
+        </div>
+        <div class="main_infoPage">
+            <div class="numPage">
+                <div class="contain_num select">1</div>
+                <div class="contain_num">2</div>
+                <div class="contain_num">3</div>
+                <div class="contain_num">4</div>
+            </div>
+            <div class="sizePage">
+                <div class="numSizePage">
+                    <div class="contain_num select">4</div>
+                    <div class="contain_num">8</div>
+                    <div class="contain_num">12</div>
+                </div>
+                <span> per Page</span>
+            </div>
+        </div>
+        <div class="next_page">
+            <span>Page suivante</span>
+            <i class="ri-arrow-right-line"></i>
+        </div>
     </div>
     <div class="topic">
         <ul>

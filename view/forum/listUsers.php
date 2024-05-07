@@ -31,8 +31,9 @@
             </div>
         </li>
         <?php
+        if($users){
         foreach($users as $user ){ ?>
-        <form action="index.php?ctrl=forum&action=modifUser&id=<?= $user->getId() ?>" method="post">
+        <form action="index.php?ctrl=home&action=modifUser&id=<?= $user->getId() ?>" method="post">
             <li class="user_li">
                 <div class="user_avatar">
                     <img src="<?= $user->getAvatar() ?>" alt="">
@@ -61,6 +62,12 @@
                 </div>
             </li>
         </form>
+        <?php }
+        }
+        else{ ?>
+            <p class="info_topic_empty">
+                La liste est vide !!! 
+            </p>
         <?php } ?>
     </ul>
 </div>

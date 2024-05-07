@@ -40,62 +40,71 @@
 
                 <header>
                     <nav>
-                        <div class="nav_left">
-                            <div class="nav_home">
-                                <a href="index.php?ctrl=home&action=index">HOME</a>
-                            </div>
-                            <div class="nav_search">
-                                <input type="text" name="search" id="search" placeholder=" Rechercher">
-                            </div>
+                        <div class="nav_home">
+                            <a href="index.php?ctrl=home&action=index">
+                                <span class="desktop">HOME</span>
+                                <i class="ri-home-3-line mobile"></i>
+                            </a>
                         </div>
-                        <div class="nav_right">
-                            <div class="nav_categorie">
-                                <a href="index.php?ctrl=forum&action=index">Categorie</a>
+                        <div class="nav_search desktop">
+                            <input type="text" name="search" id="search" placeholder=" Rechercher">
+                        </div>
+
+                        <div class="nav_categorie">
+                            <a href="index.php?ctrl=forum&action=index">
+                                <span class="desktop">Categorie</span>
+                                <i class="ri-file-copy-2-line mobile"></i>
+                            </a>
+                        </div>
+                    <?php
+                        // si l'utilisateur est connecté 
+                        if(App\Session::getUser()){
+                            ?>
+                            <div class="nav_mesSujets">
+                                <a href="index.php?ctrl=forum&action=myFollowUp&id=<?= App\Session::getUser()->getId() ?>">
+                                    <span class="desktop">MesSujets</span>
+                                    <i class="ri-edit-line mobile"></i>
+                                </a>
+                            </div>
+                            <div class="nav_profil">
+                                <img src="<?= App\Session::getUser()->getAvatar() ?>" alt="">
+                            </div>
+                            <div class="menu_profil hidden">
+                                <div class="pseudo_user">
+                                    <span>Bienvenue <?= App\Session::getUser() ?></span>
+                                </div>
+                                <div class="modif_user">
+                                    <a href="index.php?ctrl=security&action=modifUser">Paramètre de modification</a>
+                                </div>
+                                <div class="logout">
+                                    <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <div class="nav_profil">
+                                <img src="./public/img/img_user.png" alt="">
+                            </div>
+                            <div class="menu_profil hidden">
+                                <div class="login">
+                                    <a href="index.php?ctrl=security&action=login">Connexion</a>
+                                </div>
+                                <div class="signIn">
+                                    <a href="index.php?ctrl=security&action=register">Inscription</a>
+                                </div>
                             </div>
                         <?php
-                            // si l'utilisateur est connecté 
-                            if(App\Session::getUser()){
-                                ?>
-                                <div class="nav_mesSujets">
-                                    <a href="index.php?ctrl=forum&action=myFollowUp&id=<?= App\Session::getUser()->getId() ?>">MesSujets</a>
-                                </div>
-                                <div class="nav_profil">
-                                    <img src="<?= App\Session::getUser()->getAvatar() ?>" alt="">
-                                </div>
-                                <div class="menu_profil hidden">
-                                    <div class="pseudo_user">
-                                        <span>Bienvenue <?= App\Session::getUser() ?></span>
-                                    </div>
-                                    <div class="logout">
-                                        <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <div class="nav_profil">
-                                    <img src="./public/img/img_user.png" alt="">
-                                </div>
-                                <div class="menu_profil hidden">
-                                    <div class="login">
-                                        <a href="index.php?ctrl=security&action=login">Connexion</a>
-                                    </div>
-                                    <div class="signIn">
-                                        <a href="index.php?ctrl=security&action=register">Inscription</a>
-                                    </div>
-                                </div>
-                            <?php
-                            }
-                        ?>
-                        </div>
+                        }
+                    ?>
                     </nav>
                 </header>
                 
                 <main id="forum">
                     <?php
                     if(App\Session::isAdmin() || App\Session::isModerateur()){ ?>
-                        <a href="index.php?ctrl=forum&action=listUsers">
+                        <a href="index.php?ctrl=home&action=listUsers">
                             <div class="listUsers">
                                 <img src="./public/img/listUsers.png" alt="">
                             </div>
